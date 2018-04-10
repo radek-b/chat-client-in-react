@@ -1,0 +1,43 @@
+import React from "react";
+
+// export default function DataSource() {
+//   return "abc";
+// }
+// import { ChatClient } from "meetup-chat-client";
+import UserList from "./UserList";
+import MessageList from "./MessageList";
+
+// const chatClient = ChatClient.connect(
+//   "https://serene-basin-84996.herokuapp.com/"
+// );
+
+export default class DataSource extends React.Component {
+  state = { client: null };
+
+  componentWillMount() {
+    this.props.chatClient.tryLogin("Darek22");
+    this.props.chatClient.stateChanges.subscribe(client =>
+      this.setState({ client })
+    );
+  }
+
+  render() {
+    // return JSON.stringify(this.state);
+    // return JSON.stringify(this.state.client);
+    // retun "haha!";
+
+    return (
+      this.state.client != null && (
+        <div>
+          {this.state.client.chat.users != null && (
+            <UserList users={this.state.client.chat.users} />
+          )}
+
+          {this.state.client.chat.messages != null && (
+            <MessageList messages={this.state.client.chat.messages} />
+          )}
+        </div>
+      )
+    );
+  }
+}

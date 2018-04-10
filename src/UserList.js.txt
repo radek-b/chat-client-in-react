@@ -1,0 +1,23 @@
+import React from "react";
+
+export default function UserList(props) {
+  // return (
+  //   <ul>
+  //     <li>User1</li>
+  //     <li>User2</li>
+  //     <li>User3</li>
+  //   </ul>
+  // );
+
+  return (
+    // <ul>
+    //   {props.users.map(function(user) {
+    //     //function - converter
+    //     return <li>{user.name}</li>;
+    //   })}
+    // </ul>
+
+    //the same below
+    <ul>{props.users.map(user => <li>{user.name}</li>)}</ul>
+  );
+}

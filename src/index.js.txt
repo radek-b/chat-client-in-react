@@ -1,0 +1,38 @@
+import React from "react";
+import { render } from "react-dom";
+// import Hello from './Hello';
+import Header from "./Header";
+import DataSource from "./DataSource";
+import NewMessageForm from "./NewMessageForm";
+
+import { ChatClient } from "meetup-chat-client";
+const chatClient = ChatClient.connect(
+  "https://serene-basin-84996.herokuapp.com/"
+);
+
+// const styles = {
+//   fontFamily: "sans-serif",
+//   textAlign: "center"
+// };
+
+// const App = () => (
+// <div style={styles}>
+//   <Hello name="CodeSandbox" />
+//   <h2>Start editing to see some magic happen {'\u2728'}</h2>
+// </div>
+//   return <Header/>
+// );
+
+function App() {
+  //return <Header text="Hi!" name="Darek" />;
+  // return <DataSource />;
+  return (
+    <div>
+      <DataSource chatClient={chatClient} />
+
+      <NewMessageForm chatClient={chatClient} />
+    </div>
+  );
+}
+
+render(<App />, document.getElementById("root"));
